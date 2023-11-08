@@ -1,0 +1,6 @@
+{
+  "execMap": {
+    "start": "npm run dev"
+
+  }
+}
