@@ -8,7 +8,7 @@ class Quotes {
       }
     })
     const finalRes = await res.json();
-    console.log(finalRes);
+    //console.log(finalRes);
     return finalRes.story;
   }
 

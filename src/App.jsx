@@ -6,6 +6,7 @@ import dictionary from './services/dictionary';
 
 function App() {
   const [quote, setQuote] = useState("");
+  const [wordArr, setWordArr] = useState([]);
   const [wordCount, setWordCount] = useState(0);
 
   async function doStuff() {
