@@ -8,5 +8,8 @@ export default defineConfig({
   ],
   build: {
     watch: true
-  }
+  },
+ server: {
+	port: 8003,
+},
 })

@@ -33,6 +33,7 @@ function App() {
     <>
       <h1 style={{ textAlign: 'center' }}>Madlibs!!!</h1>
       <p style={{ textAlign: 'center', lineHeight: '2rem' }}>{quote}</p>
+      <p>Word Count: {wordCount}</p>
     </>
   )
 }
