@@ -16,7 +16,9 @@ function App() {
     console.log("before: ", q);
     console.log("after: ", filteredQ);
 
-    setWordCount(q.split(' ').length);
+    const arr = q.split(' ');
+    setWordArr(arr);
+    setWordCount(arr.length);
   }
 
   useEffect(() => {
