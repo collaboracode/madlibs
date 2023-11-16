@@ -42,6 +42,13 @@ function App() {
         numWords = numWords - 1
         }
       }
+
+      allWords.forEach(word => {
+        console.log("WORD", word[0].meanings);
+        quoteArray[word.index] = `[_${word[0].meanings[0].partOfSpeech}_]`
+      });
+      const newStory = quoteArray.join("")
+      console.log("newStory", newStory);
     }
     findWords(4)
 
