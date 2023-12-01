@@ -1,20 +1,25 @@
 class Quotes {
+  constructor() {
+    this.story = ""
+  }
 
-  async getQuote() {
+  /**
+   * @param {AbortController.signal | undefined} signal
+   * @returns {Promise<string>}
+   */
+  async getNewStory(signal) {
     const res = await fetch("https://shortstories-api.onrender.com/", {
       // mode: 'no-cors', 
       headers: {
         "Content-Type": "application/json",
-      }
+      },
+      signal
     })
     const finalRes = await res.json();
-    //console.log(finalRes);
+    this.story = finalRes.story
     return finalRes.story;
   }
 
-
-
 }
-
 const quotes = new Quotes();
 export default quotes;
