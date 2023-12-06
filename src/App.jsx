@@ -49,9 +49,7 @@ function App() {
   }, []);
 
   const newStoryButton = () => <button disabled={loading} onClick={() => {
-    const controller = new AbortController();
-    const signal = controller.signal;
-    newStory(signal)
+    newStory()
   }
   }>New Story</button>
 
