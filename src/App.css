@@ -1,0 +1,35 @@
+
+.wordForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+.inputDiv {
+  display: flex;
+  flex-direction: column;
+}
+.wordForm input {
+  width: 80ch;
+}
+
+.wordForm button {
+  margin-top: 1rem;
+}
+
+.story {
+  margin: 2rem auto;
+  max-width: 120ch;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.buttonDiv {
+  position: relative;
+  display: flex;
+}

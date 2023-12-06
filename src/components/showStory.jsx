@@ -37,7 +37,7 @@ export default function ShowStory(props) {
 
   // todo return an element and make the replacements bold.
   return (
-    <p>
+    <p className='story'>
       {...arr}
     </p>
   )

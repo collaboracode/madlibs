@@ -1,6 +1,7 @@
 class Quotes {
   constructor() {
     this.story = ""
+    this.title = ""
   }
 
   /**
@@ -17,6 +18,7 @@ class Quotes {
     })
     const finalRes = await res.json();
     this.story = finalRes.story
+    this.title = finalRes.title
     return finalRes.story;
   }
 

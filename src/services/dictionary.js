@@ -6,7 +6,7 @@ class Dictionary {
     // Purpose is to use this function as a regex validator and send one word at a time
     // blacklisted words will not be sent to getWordInfo()
     // (?:\b)a\b|(?:\b)an(?=[.,\W])|(?:\b)and(?=[.,\W])|(?:\b)the|(?:\b)it(?=[.,\W])|(?:\b)so(?=[.,\W])|(?:\b)is(?=[.,\W])|(?:\b)be(?=[.,\W])|(?:\b)to(?=[.,\W])|(?:\b)too(?=[.,\W])|(?:\b)am(?=[.,\W])|(?:\b)see(?=[.,\W])|
-    const blacklist = /(?:\b)a\b|(?:\b)an(?=[.,\W])|(?:\b)and(?=[.,\W])|(?:\b)the(?=[.,\W])|(?:\b)it(?=[.,\W])|(?:\b)so(?=[.,\W])|(?:\b)is(?=[.,\W])|(?:\b)be(?=[.,\W])|(?:\b)to(?=[.,\W])|(?:\b)too(?=[.,\W])|(?:\b)am(?=[.,\W])|(?:\b)see(?=[.,\W])|(?:\b)on(?=[.,\W])|(?:\b)at(?=[.,\W])|(?:\b)or(?=[.,\W])|(?:\b)as(?=[.,\W])|(?:\b)in(?=[.,\W])|(?:\b)of(?=[.,\W])/ig;
+    const blacklist = /(?:\b)a\b|(?:\b)an(?=[.,\W])|(?:\b)and(?=[.,\W])|(?:\b)the(?=[.,\W])|(?:\b)it(?=[.,\W])|(?:\b)so(?=[.,\W])|(?:\b)is(?=[.,\W])|(?:\b)be(?=[.,\W])|(?:\b)to(?=[.,\W])|(?:\b)too(?=[.,\W])|(?:\b)am(?=[.,\W])|(?:\b)see(?=[.,\W])|(?:\b)on(?=[.,\W])|(?:\b)at(?=[.,\W])|(?:\b)or(?=[.,\W])|(?:\b)as(?=[.,\W])|(?:\b)in(?=[.,\W])|(?:\b)of(?=[.,\W])|(?:\b)if(?=[.,\W])|(?:\b)into(?=[.,\W])/ig;
     return str.replaceAll(blacklist, "");
   }
 
@@ -49,11 +49,12 @@ class Dictionary {
 
       // check if word is bad for madlibs
       const blacklistConditionals = [
-        "", " ", ".", ",", "'", '"', "?", "/", "!", "a", "an", "and", "i", "the",
+        "", " ", ".", ",", "'", '"', "?", "/", "!",":", "a", "an", "and", "i", "the",
         "it", "so", "am", "is", "be", "to", "too", "am", "see", "on", "at", "or",
-        "as", "in", "of", "their", "every"
+        "as", "in", "of", "their", "every", "your", "my", "his", "her", "our", "as",
+        "if", "into", "for", "was", "from", "by", ")", "(", "[", ";", "was"
       ]
-      if (!blacklistConditionals.includes(randomWord)) {
+      if (!blacklistConditionals.includes(randomWord) && randomWord.length > 2) {
 
         // todo add edge case resolution to find another word on failure
         /* Example NOT FOUND object

@@ -7,22 +7,21 @@ import dictionary from './services/dictionary';
 import WordForm from './components/wordForm';
 
 function App() {
-  const [story, setStory] = useState("");
+  const [storyTitle, setStoryTitle] = useState("");
   const [wordArr, setWordArr] = useState([]);
   const [newWords, setNewWords] = useState([])
+  const [displayStory, setDisplayStory] = useState(false)
+  const [loading, setLoading] = useState(true)
 
-  useEffect(() => {
-    // handles double requests in useEffect.
-    const controller = new AbortController();
-    const signal = controller.signal;
-
+  const newStory = async (signal) => {
+    setLoading(true)
+    setDisplayStory(false)
     quotes.getNewStory(signal)
-      .then(() => {
-        setStory(quotes.story)
-        return quotes.story
-      })
+      .then(() => quotes.story)
       .then(story => {
-        dictionary.findWords(4, story).then((words) => {
+        dictionary.findWords(8, story).then((words) => {
+          setLoading(false)
+          setStoryTitle(quotes.title)
           setWordArr(words)
         })
       })
@@ -34,17 +33,47 @@ function App() {
           console.error(err)
         }
       })
+  }
+
+  useEffect(() => {
+    // handles double requests in useEffect.
+    const controller = new AbortController();
+    const signal = controller.signal;
+    newStory(signal).then(() => {
+
+    })
+
     return () => {
       controller.abort()
     }
   }, []);
 
+  const newStoryButton = () => <button disabled={loading} onClick={() => {
+    const controller = new AbortController();
+    const signal = controller.signal;
+    newStory(signal)
+  }
+  }>New Story</button>
+
   return (
-    <>
+    <div className='container'>
       <h1 style={{ textAlign: 'center' }}>Madlibs!!!</h1>
-      {wordArr.length > 0 && <WordForm wordArr={wordArr} newWords={newWords} setNewWords={setNewWords} />}
-      {wordArr.length > 0 && <ShowStory wordArr={wordArr} newWords={newWords} />}
-    </>
+    
+      <h2 style={{ textAlign: 'center' }}>{storyTitle}</h2>
+      {wordArr.length > 0 && <WordForm
+        wordArr={wordArr}
+        newWords={newWords}
+        setNewWords={setNewWords}
+        setDisplayStory={setDisplayStory}
+        loading={loading}
+        displayStory={displayStory}
+        ButtonFromParent={newStoryButton}
+      />}
+      <article>
+        {displayStory && wordArr.length > 0 && <ShowStory wordArr={wordArr} newWords={newWords} />}
+        {loading ? <h2>Loading...</h2> : null}
+      </article>
+    </div>
   )
 }
 
